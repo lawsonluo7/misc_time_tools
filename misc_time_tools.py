@@ -7,23 +7,23 @@ class Stopwatch:
         else:
             self.reset()
 
-    def start(self):
-        '''Start stopwatch'''
-        self.start_time = time.time()
-
-    def stop(self):
-        '''Stop the stopwatch, can't be resumed'''
-        self.end_time = time.time()
-
-    def reset(self):
-        '''Reset the stopwatch'''
-        self.start_time = time.time()
-        self.end_time = None
-
     def restart(self):
         '''Reset and start the stopwatch'''
         self.reset()
         self.start()
+
+    def reset(self):
+        '''Reset the stopwatch'''
+        self.start_time: float = time.time()
+        self.end_time: float = None
+
+    def start(self):
+        '''Start stopwatch'''
+        self.start_time: float = time.time()
+
+    def stop(self):
+        '''Stop the stopwatch, can't be resumed'''
+        self.end_time: float = time.time()
 
     @property
     def elapsed(self):
@@ -113,5 +113,3 @@ class Stopwatch:
 
     def __ge__(self, other):
         return float(self) >= other
-
-print(Stopwatch().elapsed)
