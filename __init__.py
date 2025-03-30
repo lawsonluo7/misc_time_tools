@@ -1,1 +1,1 @@
-from misc_time_tools import Stopwatch
+from .misc_time_tools import Stopwatch

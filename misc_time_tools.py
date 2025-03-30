@@ -123,9 +123,14 @@ def main():
         t.pause()
         time.sleep(1)
         print(t)
-        t.restart()
-        time.sleep(1)
-        print(t)
+    t.restart()
+    time.sleep(1)
+    print(t)
+    t2 = Stopwatch()
+    time.sleep(1)
+    print("\n\nt1", t)
+    print("t2", t2)
+    print("avrg", ((t + t2)/2))
 
 if __name__ == '__main__':
     main()
