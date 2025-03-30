@@ -1,11 +1,29 @@
 import time
 
 class Stopwatch:
-    def __init__(self, auto_start=True):
+    def __init__(self, *, auto_start=True):
+        '''Behaves a lot like a `float`, but each time you access it, it dynamically changes the time.
+        It has `start()`, `pause()`, `reset()` and `restart()`'''
         if auto_start:
             self.restart()
         else:
             self.reset()
+
+    def start(self):
+        '''Start stopwatch, if paused, resume'''
+        self.paused: bool = False
+        self.total_paused_time += time.time() - self.last_paused_time
+
+    def pause(self):
+        '''Temporarily pause the stopwatch'''
+        self.last_paused_time: float = time.time()
+        self.paused: bool = True
+
+    def reset(self):
+        '''Reset the stopwatch, doesn't start it'''
+        self.start_time: float = time.time()
+        self.total_paused_time: float = 0.0
+        self.pause()
 
     def restart(self):
         '''Reset and start the stopwatch'''
@@ -27,11 +45,7 @@ class Stopwatch:
 
     @property
     def elapsed(self):
-        return (
-            self.end_time
-            if self.end_time
-            else time.time()
-            - self.start_time)
+        return (time.time() - self.start_time) - self.total_paused_time
 
     def __str__(self):
         return str(self.elapsed)
@@ -113,3 +127,23 @@ class Stopwatch:
 
     def __ge__(self, other):
         return float(self) >= other
+
+def main():
+    t = Stopwatch()
+    for _ in range(2):
+        time.sleep(1)
+        print(t)
+        t.pause()
+        time.sleep(1)
+        print(t)
+    t.restart()
+    time.sleep(1)
+    print(t)
+    t2 = Stopwatch()
+    time.sleep(1)
+    print("\n\nt1", t)
+    print("t2", t2)
+    print("avrg", ((t + t2)/2))
+
+if __name__ == '__main__':
+    main()
