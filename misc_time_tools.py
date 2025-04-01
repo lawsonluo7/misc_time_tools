@@ -2,8 +2,22 @@ import time
 
 class Stopwatch:
     def __init__(self, *, auto_start=True):
-        '''Behaves a lot like a `float`, but each time you access it, it dynamically changes the time.
-        It has `start()`, `pause()`, `reset()` and `restart()`'''
+        """Behaves a lot like a `float`,
+        but each time you print it or perform math operations on it,
+        it gives a dynamically updated time.
+        It has `start()`, `pause()`, `reset()` and `restart()`
+        Example:
+        ```
+        from misc_time_tools import Stopwatch
+        t = Stopwatch()
+        time.sleep(1)
+        print(t) # around 1.0
+        print(t + 1) # around 2.0
+        t.pause()
+        time.sleep(1)
+        print(t) # still 1.0
+        ```
+        """
         if auto_start:
             self.restart()
         else:
@@ -29,19 +43,6 @@ class Stopwatch:
         '''Reset and start the stopwatch'''
         self.reset()
         self.start()
-
-    def reset(self):
-        '''Reset the stopwatch'''
-        self.start_time: float = time.time()
-        self.end_time: float = None
-
-    def start(self):
-        '''Start stopwatch'''
-        self.start_time: float = time.time()
-
-    def stop(self):
-        '''Stop the stopwatch, can't be resumed'''
-        self.end_time: float = time.time()
 
     @property
     def elapsed(self):
