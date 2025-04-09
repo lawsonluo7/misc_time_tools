@@ -18,26 +18,22 @@ class Stopwatch:
         print(t) # still 1.0
         ```
         """
-        if auto_start:
-            self.restart()
-        else:
-            self.reset()
+        self._total_elapsed = 0.0
+        self._last_start = time.time() if auto_start else None
 
     def start(self):
         '''Start stopwatch, if paused, resume'''
-        self.paused: bool = False
-        self.total_paused_time += time.time() - self.last_paused_time
+        self._last_start = time.time()
 
     def pause(self):
         '''Temporarily pause the stopwatch'''
-        self.last_paused_time: float = time.time()
-        self.paused: bool = True
+        self._total_elapsed += time.time() - self._last_start
+        self._last_start = None
 
     def reset(self):
         '''Reset the stopwatch, doesn't start it'''
-        self.start_time: float = time.time()
-        self.total_paused_time: float = 0.0
-        self.pause()
+        self._total_elapsed = 0.0
+        self._last_start = None
 
     def restart(self):
         '''Reset and start the stopwatch'''
@@ -46,7 +42,7 @@ class Stopwatch:
 
     @property
     def elapsed(self):
-        return (time.time() - self.start_time) - self.total_paused_time
+        return self._total_elapsed + (time.time() - self._last_start if self._last_start else 0.0)
 
     def __str__(self):
         return str(self.elapsed)
