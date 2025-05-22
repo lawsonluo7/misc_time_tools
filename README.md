@@ -2,19 +2,20 @@
 
 This repository contains miscellanious Python tools for working with time and dates.
 
-## Usage
+## StopWatch
+### Usage
 
 Class name seems self explanatory
 Acess time with Stopwatch.elapsed
 If you want to quickly acess the value just print it directly
 It has `start()`, `pause()`, `reset()` and `restart()`
 
-###### `restart()` vs `reset()`
+#### restart vs reset
 `restart()` runs `reset()` and `start()` together
 
-Here are some examples of how to use the tools in this repository:
+Here are some examples of how to use the tools in this class:
 
-### Example 1
+#### Example 1
 
 ```python
 from misc_time_tools import Stopwatch

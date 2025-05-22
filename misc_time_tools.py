@@ -2,17 +2,17 @@ import time
 
 class Stopwatch:
     def __init__(self, *, auto_start=True):
-        """Behaves a lot like a `float`,
-        but each time you print it or perform math operations on it,
-        it gives a dynamically updated time.
+        """Class name seems self explanatory
+        Acess time with Stopwatch.elapsed
+        If you want to quickly acess the value just print it directly
         It has `start()`, `pause()`, `reset()` and `restart()`
         Example:
         ```
         from misc_time_tools import Stopwatch
         t = Stopwatch()
+        print(t) # around 0.0
         time.sleep(1)
         print(t) # around 1.0
-        print(t + 1) # around 2.0
         t.pause()
         time.sleep(1)
         print(t) # still 1.0
@@ -58,11 +58,6 @@ def main():
     t.restart()
     time.sleep(1)
     print(t)
-    t2 = Stopwatch()
-    time.sleep(1)
-    print("\n\nt1", t)
-    print("t2", t2)
-    print("avrg", ((t.elapsed + t2.elapsed)/2))
 
 if __name__ == '__main__':
     main()
