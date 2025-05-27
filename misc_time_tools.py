@@ -27,7 +27,7 @@ class Stopwatch:
 
     def pause(self):
         '''Temporarily pause the stopwatch'''
-        self._total_elapsed += time.time() - self._last_start
+        self._total_elapsed += time.time() - self._last_start if self._last_start
         self._last_start = None
 
     def reset(self):
