@@ -1,5 +1,14 @@
 import time
 
+class Timer:
+    def __init__(self, time):
+        self.target_time = time
+        self.passed_time = Stopwatch()
+
+    @property
+    def done(self):
+        return self.passed_time.elapsed >= self.target_time
+
 class Stopwatch:
     def __init__(self, *, auto_start=True):
         """Class name seems self explanatory
