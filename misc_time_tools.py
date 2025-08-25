@@ -1,5 +1,14 @@
 import time
 
+class Timer:
+    def __init__(self, time):
+        self._time = time
+        self.start = time.time()
+
+    @property
+    def times_up(self):
+        return time.time() - self.start >= self._time
+
 class Stopwatch:
     def __init__(self, *, auto_start=True):
         """Class name seems self explanatory
