@@ -6,8 +6,12 @@ class Timer:
         self.start = time.time()
 
     @property
+    def time_left(self):
+        return self._time - (time.time() - self.start)
+
+    @property
     def times_up(self):
-        return time.time() - self.start >= self._time
+        return self.time_left <= 0
 
 class Stopwatch:
     def __init__(self, *, auto_start=True):
