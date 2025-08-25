@@ -60,7 +60,7 @@ class Stopwatch:
     def __str__(self):
         return str(self.elapsed)
 
-def main():
+def test_stopwatch():
     t = Stopwatch()
     time.sleep(0.67)
     print(t)
@@ -72,5 +72,13 @@ def main():
     time.sleep(0.67)
     print(t)
 
+def test_timer():
+    t = Timer(h=0, m=0, s=5)
+    while not t.times_up:
+        print(t.time_left)
+        time.sleep(1)
+    print("Timer finished!")
+
 if __name__ == '__main__':
-    main()
+    test_stopwatch()
+    test_timer()
