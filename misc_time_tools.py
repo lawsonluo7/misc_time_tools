@@ -1,8 +1,8 @@
 import time
 
 class Timer:
-    def __init__(self, time):
-        self._time = time
+    def __init__(self, s, m=0, h=0):
+        self._time = h * 3600 + m * 60 + s
         self.start = time.time()
 
     @property
