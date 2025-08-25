@@ -10,7 +10,7 @@ class Timer:
         return self._time - (time.time() - self.start)
 
     @property
-    def times_up(self):
+    def time_is_up(self):
         return self.time_left <= 0
 
 class Stopwatch:
@@ -74,9 +74,9 @@ def test_stopwatch():
 
 def test_timer():
     t = Timer(h=0, m=0, s=5)
-    while not t.times_up:
+    while not t.time_is_up:
         print(t.time_left)
-        time.sleep(1)
+        time.sleep(0.2)
     print("Timer finished!")
 
 if __name__ == '__main__':
